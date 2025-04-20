@@ -1,7 +1,7 @@
 name: Deploy Project
 on: push
 jobs:
-  Sync Workspace:
+  Sync_Workspace:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -13,21 +13,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
   Lint:
+    needs: Sync_Workspace
     runs-on: ubuntu-latest
     steps:
       - name: Run Lint
         run: eslint --ext .jsx --fix src
   Build:
+    needs: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Run Build
         run: vite build
   Preview:
+    needs: Build
     runs-on: ubuntu-latest
     steps:
       - name: Run Preview
         run: vite preview
   Test:
+    needs: Preview
     runs-on: ubuntu-latest
     steps:
       - name: testing
