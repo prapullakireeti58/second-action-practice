@@ -1,5 +1,5 @@
 name: Issues
-on: [issues,dispatch_workflow]
+on: [issues,workflow_dispatch]
 jobs:
   output-info:
     runs-on: ubuntu-latest
